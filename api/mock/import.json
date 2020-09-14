@@ -1,0 +1,53 @@
+[
+    {
+      "id": 0,
+      "NurseName": "Ishan",
+      "MedicareNumber": "123456",
+      "PatientName": "Vansh",
+      "RoomNumber": "10",
+      "RoomData": [
+        {
+          "ts": "1529542230",
+          "light_intensity": 102,
+          "temp": 25,
+          "motion_detected": 1
+        },
+        {
+          "ts": "153342230",
+          "light_intensity": 10,
+          "temp": 21,
+          "motion_detected": 0
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "NurseName": "Ishan",
+      "MedicareNumber": "124232",
+      "PatientName": "Shruti",
+      "RoomNumber": "12",
+      "RoomData": [
+        {
+          "ts": "153345289",
+          "light_intensity": 250,
+          "temp": 41,
+          "motion_detected": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "NurseName": "Satvik",
+      "MedicareNumber": "123782",
+      "PatientName": "Edric",
+      "RoomNumber": "11",
+      "RoomData": [
+        {
+          "ts": "153342245",
+          "light_intensity": 150,
+          "temp": 31,
+          "motion_detected": 0
+        }
+      ]
+    }
+  ]

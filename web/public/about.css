@@ -1,0 +1,90 @@
+body{
+    background-image: url("./aboutBcakground.jpg");
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
+}
+.hero{
+    width: 100%;
+    height: 10vh;
+    position: relative;
+    overflow: hidden;
+}
+.navbar{
+    width: 10%;
+    height: 60%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.cointainer{
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-cointainer{
+    width: 300px;
+    height: 306px;
+}
+
+.card figure{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    margin: 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card{
+    width: 100%;
+    height: 100%; 
+    transition: transform 1s ease-in-out;
+    transform-style: preserve-3d;
+    text-align: center;
+}
+
+.card-cointainer:hover .card{
+    transform: rotateY(180deg);
+}
+
+.card .front{
+background: rgb(83, 83, 206);
+color: white;
+}
+
+
+.card .back{
+    background: rgb(75, 170, 173);
+    color: white;
+    transform: rotateY(180deg);
+
+}
+
+.back button{
+    background: rgb(241, 122, 232);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+
+}
+
+.space{
+    color: white;
+    pointer-events:none ;
+}
+
+.front img{
+    width: 110px;
+    height:110px;
+    border-radius: 50%;
+    margin: 5px auto;
+    cursor: pointer;
+}

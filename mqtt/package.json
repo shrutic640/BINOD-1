@@ -1,0 +1,26 @@
+{
+  "name": "mqtt-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mqtt.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "doc": "apidoc -o public/generated-docs/ -e node_modules/",
+    "start": "nodemon -r dotenv/config mqtt.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.28",
+    "mqtt": "^4.1.0",
+    "nodemon": "^2.0.4",
+    "random-coordinates": "^1.0.1",
+    "random-int": "^2.0.1"
+  },
+  "devDependencies": {
+    "apidoc": "^0.25.0"
+  }
+}
