@@ -190,6 +190,7 @@ $('#send-command').on("click", function () {
 });
 
 
+
 $('#send-command').on("click", function () {
   const mealtype = $('#mealtype').val();
   const patientName = $('#patientName').val();
