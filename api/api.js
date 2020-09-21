@@ -38,7 +38,6 @@ app.get('/api/reviews', (req, res) => {
     });
 });
 
-
 app.get('/api/menus', (req, res) => {
     Menu.find({}, (err, menus) => {
         if (err == true) {
@@ -48,7 +47,6 @@ app.get('/api/menus', (req, res) => {
         }
     });
 });
-
 
 app.get('/api/patients', (req, res) => {
     Patient.find({}, (err, patients) => {
