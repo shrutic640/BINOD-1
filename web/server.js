@@ -73,23 +73,58 @@ app.get('/device-list', function (req, res) {
 app.get('/register-device', (req, res) => {
     res.sendFile(`${base}/register-device.html`);
 });
+app.get('/profile', (req, res) => {
+    res.sendFile(`${base}/profile.html`);
+});
+
+app.get('/reviews', (req, res) => {
+    res.sendFile(`${base}/reviews.html`);
+});
+
+app.get('/menus', (req, res) => {
+    res.sendFile(`${base}/new-menu.html`);
+});
+
+app.get('/add-review', (req, res) => {
+    res.sendFile(`${base}/add-review.html`);
+});
 app.get('/send-command', (req, res) => {
     res.sendFile(`${base}/send-command.html`);
 });
+
 app.get('/registration', (req, res) => {
     res.sendFile(`${base}/registration.html`);
+});
+app.get('/record', (req, res) => {
+    res.sendFile(`${base}/record.html`);
 });
 
 app.get('/login', (req, res) => {
     res.sendFile(`${base}/login.html`);
 });
 
+app.get('/project', (req, res) => {
+    res.sendFile(`${base}/project.html`);
+});
+
 app.get('/menu', (req, res) => {
     res.sendFile(`${base}/menu.html`);
 });
-
+app.get('/addProfile', (req, res) => {
+    res.sendFile(`${base}/addProfile.html`);
+});
+app.get('/addRecord', (req, res) => {
+    res.sendFile(`${base}/addRecord.html`);
+});
 app.get('/About-The-Team', (req, res) => {
     res.sendFile(`${base}/About-The-Team.html`);
+});
+app.get('/profileDisplay', (req, res) => {
+    res.sendFile(`${base}/profileDisplay.html`);
+});
+
+app.get('/main', (req, res) => {
+    res.sendFile(`${base}/main.html`);
 });
 
 app.get("/auth/google", passport.authenticate("google", {
@@ -99,7 +134,7 @@ app.get("/auth/google", passport.authenticate("google", {
 app.get('/auth/google/redirect', passport.authenticate('google'),(req,res)=>{
     const user = req.user;
     app.locals.user = user;
-    res.redirect('/device-list');
+    res.redirect('/profileDisplay');
 });
 app.get('/auth/google/user', (req,res)=>{
     res.send(app.locals.user)
@@ -111,3 +146,5 @@ app.get('*', (req, res) => {
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
 });
+
+

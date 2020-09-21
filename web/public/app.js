@@ -1,13 +1,44 @@
 $('#navbar').load('navbar.html');
 $('#footer').load('footer.html');
 const API_URL = 'http://localhost:5000/api';
-const currentUser = localStorage.getItem('user');
 const MQTT_URL = 'http://localhost:5001/send-command';
 
 const patients = JSON.parse(localStorage.getItem('patients')) || [];
 const users = JSON.parse(localStorage.getItem('users')) || [];
+const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
 
 
+$.get(`${API_URL}/reviews`).then(response => {
+  response.forEach(review => {
+    $('#reviews tbody').append(`      
+    <tr>         
+    <td>${review.NurseName}</td>        
+     <td>${review.review}</td>     
+      </tr>`
+    );
+  });
+}).catch(error => {
+  console.error(`Error: ${error}`);
+});
+
+
+$.get(`${API_URL}/menus`).then(response => {
+  response.forEach(menu => {
+    $('#menus tbody').append(`      
+            <tr>         
+            <td>${menu.FoodPreference}</td>        
+             <td>${menu.FoodItem}</td>     
+             <td> 
+             
+              </tr>`
+    );
+  });
+}).catch(error => {
+  console.error(`Error: ${error}`);
+});
+
+
+  
 $.get('/auth/google/user', (res)=>{
   console.log("get runs");
   const logGoogle = localStorage.getItem('logGoogle');
@@ -17,13 +48,11 @@ $.get('/auth/google/user', (res)=>{
       localStorage.setItem('user',res.name);
       localStorage.setItem('isAdmin',res.isAdmin);
       localStorage.setItem('isAuthenticated',true);
-  }else{
-      console.log("this is false");
-      localStorage.removeItem('user');
-      localStorage.removeItem('isAdmin');
-      localStorage.removeItem('isAuthenticated');
   }
 });
+
+
+const currentUser = localStorage.getItem('user');
 
 if (localStorage.getItem('logGoogle')) {
   const currentUser = localStorage.getItem('user');
@@ -77,7 +106,7 @@ else if (currentUser) {
           </tr>`
         );
       });
-      $('#patients tbody tr').on('click', (e) => {
+      $('#patients tbody tr').on('click', (e) => { 
         const patientId = e.currentTarget.getAttribute('data-patient-id');
         $.get(`${API_URL}/patients/${patientId}/patient-history`)
           .then(response => {
@@ -105,7 +134,81 @@ else if (currentUser) {
   }
 }
 
+if (currentUser) {
+  console.log(currentUser)
+  $.get(`${API_URL}/users/${currentUser}/profiles`)
+    .then(response => {
+      response.forEach((profile) => {
+        $('#profiles tbody').append(`
+          <tr data-profile-id=${profile._id}>
+          <td>${profile.NurseName}</td>
+          <td>${profile.FirstName}</td>
+            <td>${profile.LastName}</td>
+            <td>${profile.Email}</td>
+            <td>${profile.PhoneNum}</td>
+            <td>${profile.EmployType}</td>
+            <td>${profile.DateOfBirth}</td>
+          </tr>`
+        );
+      });
+    })
+    .catch(error => {
+      console.error(`Error: ${error}`);
+    });
+} 
 
+
+
+
+$('#add-review').on('click', () => {
+  const NurseName = $('#NurseName').val();
+  const review = $('#review').val();
+  const body = {
+    NurseName,
+    review
+  };
+
+  $.post(`${API_URL}/reviews`, body)
+    .then(response => {
+      location.href = '/reviews';
+    })
+    .catch(error => {
+      console.error(`Error: ${error}`);
+    });
+})
+
+
+
+$('#send-command').on("click", function () {
+  const command = $('#command').val();
+  const patientName = $('#patientName').val();
+  $.post(`${MQTT_URL}/send-command`, { patientName, command })
+      .then(response => {
+          console.log(response);
+      })
+  console.log(`command is ${command}`);
+});
+
+
+$('#send-command').on("click", function () {
+  const mealtype = $('#mealtype').val();
+  const patientName = $('#patientName').val();
+  $.post(`${MQTT_URL}/send-mealType`, { patientName, mealtype })
+      .then(response => {
+          console.log(response);
+      })
+  console.log(`command is ${mealtype}`);
+});
+
+$('#send-command').on("click", function () {
+  const specialinstructions = $('#specialinstructions').val();
+  const patientName = $('#patientName').val();
+  $.post(`${MQTT_URL}/send-specialinstructions`, { patientName, specialinstructions })
+      .then(response => {
+          console.log(response);
+      })
+  console.log(`command is ${specialinstructions}`);
+});
 
 $('#add-patient').on('click', () => {
   const NurseName = $('#NurseName').val();
@@ -128,6 +231,93 @@ $('#add-patient').on('click', () => {
     .catch(error => {
       console.error(`Error: ${error}`);
     });
+})
+
+$('#add-record').on('click', () => {
+  const FirstName = $('#FirstName').val();
+  const LastName = $('#LastName').val();
+  const Email = $('#Email').val();
+  const PhoneNum = $('#PhoneNum').val();
+  const DateOfBirth = $('#DateOfBirth').val();
+  const Address = $('#Address').val();
+  const Age = $('#Age').val();
+  const Sex = $('#Sex').val();
+  const DateOfAddmission = $('#DateOfAddmission').val();
+
+
+  const body = {
+    FirstName,
+    LastName,
+    Email,
+    PhoneNum,
+    DateOfBirth,
+    Address,
+    Age,
+    Sex,
+    DateOfAddmission
+};
+
+  $.post(`${API_URL}/records`, body)
+    .then(response => {
+      location.href = '/record';
+    })
+    .catch(error => {
+      console.error(`Error: ${error}`);
+    });
+})
+
+$.get(`${API_URL}/records`).then(response => 
+  {
+     response.forEach(record => {
+        $('#records tbody').append(`
+        <tr>
+           <td>${record.FirstName}</td>
+           <td>${record.LastName}</td>
+           <td>${record.Email}</td>
+           <td>${record.PhoneNum}</td>
+           <td>${record.DateOfBirth}</td>
+           <td>${record.Address}</td>
+           <td>${record.Age}</td>
+           <td>${record.Sex}</td>
+           <td>${record.DateOfAddmission}</td>
+
+        </tr>`
+        );
+     });
+  })
+  .catch(error => {
+   console.error(`Error: ${error}`);
+  });
+
+$('#add-profile').on('click', () => {
+  const NurseName = $('#NurseName').val();
+  const FirstName = $('#FirstName').val();
+  const LastName = $('#LastName').val();
+  const Email = $('#Email').val();
+  const PhoneNum = $('#PhoneNum').val();
+  const EmployType = $('#EmployType').val();
+  const DateOfBirth = $('#DateOfBirth').val();
+  const body = {
+    NurseName,
+    FirstName,
+    LastName,
+    Email,
+    PhoneNum,
+    EmployType,
+    DateOfBirth
+};
+
+  $.post(`${API_URL}/profiles`, body)
+    .then(response => {
+      location.href = '/profile';
+    })
+    .catch(error => {
+      console.error(`Error: ${error}`);
+    });
+})
+
+$('#new-profile').on('click', () => {
+  location.href = '/addProfile';
 })
 /** 
 $('#send-command').on('click', function () {
@@ -157,10 +347,6 @@ $('#register').on('click', () => {
 
   else if (password.length == 0) {
     $('#message').append('<p class="alert alert-danger">You forgot to write password</p>');
-  }
-
-  else if (password.value == user.value) {
-    $('#message').append('<p class="alert alert-danger">Username and Password cannot be same</p>');
   }
 
   else if (password.length < 6) {
@@ -211,7 +397,7 @@ $('#login').on('click', () => {
       if (response.success) {
         localStorage.setItem('user', user);
         localStorage.setItem('isAdmin', response.isAdmin);
-        location.href = '/device-list';
+        location.href = '/profileDisplay';
       } else {
         $('#message').append(`<p class="alert alert-danger">${response}
    </p>`);

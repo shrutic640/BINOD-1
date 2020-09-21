@@ -1,0 +1,46 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="A frontend dashboard for the
+TrackMe application" />
+    <meta name="author" content="ENTER YOUR NAME HERE" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <center>
+  <br>
+  <br>
+  <br>
+  <form action="https://api.particle.io/v1/devices/e00fce6801bb0787034b6953/led?access_token=0abb5b822cfa137db66a0956767d03c09d3ac631" method="POST">
+    Food Dispenser Control Station<br>
+    <br>
+    <input type="radio" name="arg" value="FoodDispenserON"> Turn on Light.
+    <br>
+    <input type="radio" name="arg" value="FoodDispenserOFF"> Turn off Light.
+    <br>
+    <br>
+    <input type="radio" name="arg" value="FoodDispenserON"> Turn on Heater.
+    <br>
+    <input type="radio" name="arg" value="FoodDispenserOFF"> Turn off Heater.
+    <br>
+    <br>
+    <input type="radio" name="arg" value="FoodDispenserON"> Turn on AC.
+    <br>
+    <input type="radio" name="arg" value="FoodDispenserOFF"> Turn off AC.
+    <br>
+    <br>
+    <input type="submit" value="Execute">
+  </form>
+  <div id="footer"></div>
+</center>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="app.js"></script>
+  </body>
+
+
+</html>

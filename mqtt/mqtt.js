@@ -43,11 +43,33 @@ client.on('connect', () => {
 * null
 * }
 */
+
+
+
 app.post('/send-command', (req, res) => {
     const { patientId, command } = req.body;
-    const topic = `/219056862/command/${patientId}`;
+    const topic = `/218303945/command/${patientId}`;
     client.publish(topic, command, () => {
     res.send('published new message');
+    });
+});
+
+
+
+app.post('/send-mealType', (req, res) => {
+    const { patientName, mealtype } = req.body;
+    const topic = `/218303945/mealtype/${patientName}`;
+    client.publish(topic, mealtype, () => {
+    res.send('published new message');
+    });
+   })
+
+   
+app.post('/send-specialInstructions', (req, res) => {
+    const { patientName, specialinstructions } = req.body;
+    const topic = `/218303945/specialinstructions/${patientName}`;
+    client.publish(topic, specialinstructions, () => {
+        res.send('published new message');
     });
 });
 
