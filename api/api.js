@@ -37,7 +37,6 @@ app.get('/api/reviews', (req, res) => {
     });
 });
 
-
 app.get('/api/menus', (req, res) => {
     Menu.find({}, (err, menus) => {
         if (err == true) {
