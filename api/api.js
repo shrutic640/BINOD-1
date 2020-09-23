@@ -47,7 +47,6 @@ app.get('/api/menus', (req, res) => {
     });
 });
 
-
 app.get('/api/patients', (req, res) => {
     Patient.find({}, (err, patients) => {
         if (err == true) {
