@@ -27,7 +27,6 @@ app.use(function (req, res, next) {
 
 
 
-
 app.get('/api/reviews', (req, res) => {
     Review.find({}, (err, reviews) => {
         if (err == true) {
