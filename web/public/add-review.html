@@ -6,6 +6,7 @@
     <meta name="description" content="A frontend dashboard for the
 TrackMe application" />
     <meta name="author" content="ENTER YOUR NAME HERE" />
+    <link rel="stylesheet" href="add-review.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -13,19 +14,23 @@ TrackMe application" />
 </head>
 
 <body>
-    <div class="container">
-        <div id="navbar"></div>
+
+    <div id="navbar"></div>
+    
+    <div class="wrapper">
         <h1>Create Review</h1>
-        <div class="form group">
+        <br>
+        <div class="form">
+            <div class="inputfield">
             <label for="NurseName">Nurse Name</label>
-            <input type="text" class="form-control" id="NurseName" />
+            <input type="text" class="input" id="NurseName" />
         </div>
-        <div class="form group">
+
+        <div class="inputfield">
             <label for="review">Review</label>
-            <input type="text" class="form-control" id="review" />
+            <input type="text" class="input" id="review" />
         </div>
       
-        <br>
         
         <button class="btn btn-success" id="add-review">Add Review</button>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -35,6 +40,17 @@ TrackMe application" />
         <div id="footer"></div>
     </div>
     <script src="./app.js"></script>
+    <!-- Start of ChatBot (www.chatbot.com) code -->
+<script type="text/javascript">
+    window.__be = window.__be || {};
+    window.__be.id = "5f6cb477aaa01e00065e7aef";
+    (function() {
+        var be = document.createElement('script'); be.type = 'text/javascript'; be.async = true;
+        be.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.chatbot.com/widget/plugin.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(be, s);
+    })();
+</script>
+<!-- End of ChatBot code -->
 </body>
 
 </html>
